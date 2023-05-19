@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>服务说明</title>
+    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
+    <link href="/resources/css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/resources/css/styles.css" rel="stylesheet" />
+    <link href="/resources/css/ipInput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <a class="navbar-brand" href="#!">设备信息</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="py-5">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <div class="m-4 m-lg-5">
+                    <h1 class="display-5 fw-bold">服务说明</h1>
+                    <p class="fs-4"> </p>
+                    <button type="button" id="btnReboot" class="btn btn-primary btn-lg">设备重启</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Page Content-->
+    <section class="pt-4">
+        <div class="container px-lg-5">
+            <!-- Page Features-->
+            <div class="row gx-lg-5">
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-collection"></i></div>
+                            <h2 class="fs-4 fw-bold">CPU</h2>
+                            <p class="mb-0"><div id="cpu">0</div></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-cloud-download"></i></div>
+                            <h2 class="fs-4 fw-bold">Disk</h2>
+                            <p class="mb-0"><div id="disk">10G</div></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-card-heading"></i></div>
+                            <h2 class="fs-4 fw-bold">内存</h2>
+                            <p class="mb-0"><div id="mem">0</div></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-12 mb-5">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">网卡信息</h3>
+                        </div>
+                        <form>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="ipv4">IP地址</label>
+                                    <!-- <input type="text" class="form-control" id="ipv4" name="ipv4"
+                                        placeholder="xxx.xxx.xxx.xxx"> -->
+                                    <div id="ipv4"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="netmask">子网掩码</label>
+                                    <!-- <input type="text" class="form-control" id="netmask" name="netmask"
+                                        placeholder="xxx.xxx.xxx.xxx"> -->
+                                    <div id="netmask"></div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-center">
+                                <button type="button" id="btnChange" class="btn btn-primary">修改地址</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; QPS NMS 2022</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="/resources/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/resources/js/scripts.js"></script>
+    <script src="/resources/js/jquery.min.js"></script>
+    <script src="/resources/js/ipInput.min.js"></script>
+    <script>
+        //input mask bundle ip address
+        var ipInput = $('#ipv4').ipInput();
+        var maskInput = $('#netmask').ipInput();
+
+        $.get("/ip/get",function(data,status){
+            ipInput.setIp(data["ipAddress"]);
+            maskInput.setIp(data["subnetMask"]);
+        });
+        
+        function getInfo()
+        {
+            $.get("/device/info",function(data,status){
+                    $("#cpu").text((data["cpu"]*100).toFixed(2)+"%");
+                    $("#mem").text((data["mem"]*100).toFixed(2)+"%");
+                    $("#disk").text(data["disk"]);
+                    //$("#os").text(data["os"]);
+                    //$("#kernel").text(data["kernel"]);
+            });
+        }
+
+        setInterval("getInfo()" ,3000);
+
+        $("#btnChange").click(function () {
+            $.post(
+                "/ip/update",
+                {
+                    ipAddress: ipInput.getIp(),
+                    subnetMask: maskInput.getIp()
+                },
+                function (data, status) {
+                    if(data["status"]=="success")
+                        {
+                            alert("地址修改成功");
+                        }
+                }
+            );
+        });
+        $("#btnReboot").click(function () {
+            $.post(
+                "/device/reboot",
+                {
+                    device: 'monitor',
+                },
+                function (data, status) {
+                    if(data["status"]=="success")
+                        {
+                            alert("设备重启");
+                        }
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>
