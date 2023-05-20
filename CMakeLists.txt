@@ -12,7 +12,6 @@ find_package(Drogon)
 find_package(Catch2)
 find_package(nlohmann_json)
 
-message(${CMAKE_BUILD_TYPE})
 #链接库搜索路径
 INCLUDE_DIRECTORIES(Exlibs/LteUl)
 INCLUDE_DIRECTORIES(Exlibs/SystemUtility)
