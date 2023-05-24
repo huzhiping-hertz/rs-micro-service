@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "/home/hz/work/RM/rm-micro-service/build/CMakePresets.json"
+        "/home/hz/work/RS/rs-micro-service/build/CMakePresets.json"
     ]
 }

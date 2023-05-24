@@ -1,17 +1,19 @@
 from conan import ConanFile
 from conan.errors import ConanInvalidConfiguration
 
-class RMInterface(ConanFile):
-    name = "RMInterface"
+class MicroServiceInterface(ConanFile):
+    name = "MicroServiceInterface"
     version = "0.1"
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeToolchain", "CMakeDeps"
 
-    default_options={"drogon/*:with_ctl":True}
+    options = {"shared": [True, False], "fPIC": [True, False]}
+
+    default_options={"drogon/*:with_ctl":True,"shared": False, "fPIC": True}
     
     def validate(self):
-        if self.info.settings.os == "Windows":
-            raise ConanInvalidConfiguration("This package is not compatible with Windows")
+        if self.info.settings.os == "Macos":
+            raise ConanInvalidConfiguration("This package is not compatible with Macos")
 
     def layout(self):
         self.folders.build = f"build/{str(self.settings.build_type)}"
@@ -29,3 +31,8 @@ class RMInterface(ConanFile):
         self.requires("catch2/3.1.0")
         self.requires("pugixml/1.13")
         self.requires("nlohmann_json/3.11.2")
+        self.requires("zeromq/4.3.4")
+    
+    def configure(self):
+        if self.settings.compiler == 'msvc':
+            del self.options.fPIC

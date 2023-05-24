@@ -29,6 +29,8 @@
 Release模式 
 4.conan install . --build=missing
 
+6.采用visual studio 编译时，配置编译文件为conan-debug/conan-release
+
 Debug模式 
 5.conan install . -s build_type=Debug --build=missing
 

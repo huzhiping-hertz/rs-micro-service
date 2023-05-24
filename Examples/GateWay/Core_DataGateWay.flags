@@ -1,0 +1,3 @@
+--log_debug=true
+--xpub_address=tcp://127.0.0.1:8888
+--xsub_address=tcp://127.0.0.1:6666
