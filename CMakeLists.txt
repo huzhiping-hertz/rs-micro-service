@@ -38,8 +38,11 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 file(COPY ${PROJECT_SOURCE_DIR}/config.txt DESTINATION ${PROJECT_SOURCE_DIR}/bin/${VERSION})
 
 #项目源码
-add_subdirectory(CommonUtility)
-add_subdirectory(ZmqMessager)
+INCLUDE_DIRECTORIES(Tools/)
+add_subdirectory(Tools)
+add_subdirectory(Examples)
+add_subdirectory(GateWay)
 add_subdirectory(DomainModel)
 add_subdirectory(WebApi)
+add_subdirectory(WebSocket)
 add_subdirectory(UnitTest)

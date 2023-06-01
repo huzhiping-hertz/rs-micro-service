@@ -1,5 +1,0 @@
-set(APP_NAME "Core_DataGateWay")
-file(GLOB cpp_files "*.cpp")
-ADD_EXECUTABLE(${APP_NAME} ${cpp_files})
-target_link_libraries(${APP_NAME} Poco::Util Poco::JSON  Poco::Data Poco::DataSQLite  gflags DomainModel ZmqMessager)
-file(COPY Core_DataGateWay.flags DESTINATION ${PROJECT_SOURCE_DIR}/bin/${VERSION})

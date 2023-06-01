@@ -3,17 +3,17 @@
 1. pip install conan
 
 2. 安装cmake
-    Linux 安装
-    windows 下安装后需要设置下环境变量
-    windows下vs提供了cmake，如果安装的话会冲突，导致编译出问题
+    Linux 安装后设置环境变量
+    windows下vs提供了cmake，如果安装的话会冲突，导致编译出问题，可以直接设置环境变量
     例如：C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\
 
 2. conan profile detect
 
    linux下会生成: /home/hz/.conan2/profiles/default 文件
-   windows下会生成: C:\Users\Administrator\.conan2\profiles\default
    关于Linux下找不到conan命令,运行source ~/.profile
 
+   windows下会生成: C:\Users\Administrator\.conan2\profiles\default
+  
    修改 profiles\default 文件
    compiler.cppstd=gnu17，部分软件需要c++17
 

@@ -9,8 +9,6 @@
 // #include "crow.h"
 // #include "gflags\gflags.h"
 
-// DEFINE_bool(log_debug, true, "log debug");
-
 // using namespace RM;
 // using namespace std;
 // using namespace crow;

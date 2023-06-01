@@ -1,1 +1,8 @@
---log_debug=true
+--gateway_xpub_address=tcp://127.0.0.1:8888
+--gateway_xsub_address=tcp://127.0.0.1:6666
+
+
+--websocket_server_sub_address="tcp://127.0.0.1:8888"
+--websocket_server_pub_address="tcp://127.0.0.1:6666"
+--websocket_server_ip="127.0.0.1"
+--websocket_server_port=9980
