@@ -1,7 +1,11 @@
 
 #include <iostream>
+#include <gflags/gflags.h>
 #include "ClientConnection.h"
 #include "Poco/NumberParser.h"
+
+DEFINE_uint32(tcp_server_port, 2001, "TCP Server Port");
+
 using Poco::UInt16;
 using Poco::NumberParser;
 
@@ -16,7 +20,9 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		Poco::UInt16 port = NumberParser::parse((argc > 1) ? argv[1] : "2001");
+        gflags::ParseCommandLineFlags(&argc, &argv, true);
+
+		Poco::UInt16 port = FLAGS_tcp_server_port;
 
 		TCPServer srv(new TCPFactory(), port);
 		srv.start();
