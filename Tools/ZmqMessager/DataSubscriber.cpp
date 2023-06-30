@@ -6,8 +6,6 @@
 #include <string>
 #include <zmq.h>
 #include <vector>
-#include "trantor/utils/Logger.h"
-#include "trantor/utils/AsyncFileLogger.h"
 using namespace std;
 using namespace RS;
 
@@ -23,7 +21,7 @@ DataSubscriber::DataSubscriber(string address) {
 	int rc = zmq_connect(subscriber, address.c_str());
 	if (rc != 0)
 	{
-		LOG_ERROR<<"!!!Subscriber can not connect to Publisher";
+		//LOG_ERROR<<"!!!Subscriber can not connect to Publisher";
 	}
 }
 
@@ -58,7 +56,7 @@ int DataSubscriber::GetMsg(char* bufData, int bufLen) {
 		if (msg_size < 0)
 		{
 			int error_code = zmq_errno();
-			LOG_ERROR<<"Subscirber Get Msg Error";
+			//LOG_ERROR<<"Subscirber Get Msg Error";
 		}
 		rslen = msg_size;
 

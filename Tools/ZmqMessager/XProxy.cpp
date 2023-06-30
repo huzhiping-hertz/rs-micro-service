@@ -5,8 +5,6 @@
 #include <iostream>
 #include <string>
 #include <zmq.h>
-#include "trantor/utils/Logger.h"
-#include "trantor/utils/AsyncFileLogger.h"
 using namespace std;
 using namespace RS;
 
@@ -23,7 +21,7 @@ XProxy::XProxy(string xpub,string xsub) {
 
 	if (pub_rs != 0 || sub_rs!=0)
 	{
-		LOG_ERROR<<"!!!XPub or XSub can not be established";
+		//LOG_ERROR<<"!!!XPub or XSub can not be established";
 	}
 }
 

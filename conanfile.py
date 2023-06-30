@@ -22,7 +22,7 @@ class MicroServiceInterface(ConanFile):
     def requirements(self):
         
         self.requires("jsoncpp/1.9.5")
-        self.requires("trantor/1.5.8")
+        self.requires("spdlog/1.11.0")
         self.requires("drogon/1.8.3")   
         self.requires("poco/1.12.4")
         self.requires("openssl/1.1.1s", override=True)

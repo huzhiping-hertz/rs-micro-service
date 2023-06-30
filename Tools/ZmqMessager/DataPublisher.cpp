@@ -6,8 +6,6 @@
 #include <chrono>
 #include <ctime> 
 #include <time.h>
-#include "trantor/utils/Logger.h"
-#include "trantor/utils/AsyncFileLogger.h"
 
 using namespace RS;
 using json = nlohmann::json;
@@ -37,7 +35,7 @@ DataPublisher::DataPublisher(string address,bool isXPub) {
 
 	if (rc != 0)
 	{
-		LOG_ERROR<<"Can not connected:" + address;
+		//LOG_ERROR<<"Can not connected:" + address;
 	}
 	m_address = address;
 }
