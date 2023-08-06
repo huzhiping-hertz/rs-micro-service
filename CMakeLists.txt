@@ -6,6 +6,12 @@ IF (WIN32)
      #windows下编译动态库时生成symbols文件(lib文件)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     add_definitions(-D_PATH_SPLITER_=92)
+    # 引入lib異常，解決error LNK2026: module unsafe for SAFESEH
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /SAFESEH:NO ")		# 程序输出文件为exe文件时起作用
+    set(CMAKE_SHARED_LINKR_FLAGS "${CMAKE_SHARED_LINKR_FLAGS} /SAFESEH:NO ")	# 程序输出文件为dll文件时起作用
+    set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKR_FLAGS} /SAFESEH:NO ")	# 程序输出文件为lib文件时起作用
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /SAFESEH:NO")	# 程序输出文件为module文件时起作用
+
 ELSEIF (UNIX)
     message("-- Compiling under Linux platform")
     add_definitions(-D_PATH_SPLITER_=47)
@@ -48,4 +54,5 @@ add_subdirectory(Tools)
 #add_subdirectory(WebSocket)
 #add_subdirectory(TCP)
 #add_subdirectory(RpcServer)
+#add_subdirectory(VXI11)
 add_subdirectory(UnitTest)

@@ -16,8 +16,8 @@ class MicroServiceInterface(ConanFile):
             raise ConanInvalidConfiguration("This package is not compatible with Macos")
 
     def layout(self):
-        self.folders.build = f"build/{str(self.settings.build_type)}"
-        self.folders.generators = "build"
+        self.folders.build = f"build/{str(self.settings.arch)}/{str(self.settings.build_type)}/"
+        self.folders.generators = f"build/{str(self.settings.arch)}/{str(self.settings.build_type)}/"
         
     def requirements(self):
         

@@ -7,7 +7,7 @@
     windows下vs提供了cmake，如果安装的话会冲突，导致编译出问题，可以直接设置环境变量
     例如：C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\
 
-2. conan profile detect
+3. conan profile detect
 
    linux下会生成: /home/hz/.conan2/profiles/default 文件
    关于Linux下找不到conan命令,运行source ~/.profile
@@ -38,3 +38,21 @@ Debug模式
 编译器IDE目前都是用的vscode
 
 windows 下用vs2022  在vscode编译成功后也成功编译了
+
+
+關於x86  x64 版本的編譯
+X86 Debug模式 
+conan install . -s build_type=Debug  -s arch=x86 --build=missing
+
+x86 Release  模式 
+conan install . -s build_type=Debug  -s arch=x86 --build=missing
+
+X64 模式
+arch=x86_64
+
+引入第三方庫時注意調用約定(call convention)
+x86下調用約定 cdecl stdcall fastcall,默認cdecl
+windows api默認stdcall
+x64下做了統一
+
+查看第三方庫調用約定
